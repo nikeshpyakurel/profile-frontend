@@ -50,13 +50,12 @@ const UserWidget = ({ userId, picturePath }) => {
   return (
     <WidgetsWrapper>
       {/* first row */}
-      <FlexBetween
-        gap="0.5rem"
-        pb="1.1rem"
-        onClick={() => navigate(`/profile/${userId}`)}
-      >
+      <FlexBetween gap="0.5rem" pb="1.1rem">
         <FlexBetween gap="1rem">
-          <UserImage image={picturePath} />
+          <UserImage
+            image={picturePath}
+            onClick={() => navigate(`/profile/${userId}`)}
+          />
           <Box>
             <Typography
               variant="h4"
@@ -68,13 +67,21 @@ const UserWidget = ({ userId, picturePath }) => {
                   cursor: "pointer",
                 },
               }}
+              onClick={() => navigate(`/profile/${userId}`)}
             >
               {firstName} {lastName}
             </Typography>
-            <Typography color={medium}>{friends.lengths} Friends</Typography>
+            <Typography color={medium}>{friends.length} Friends</Typography>
           </Box>
         </FlexBetween>
-        <ManageAccountsOutlined />
+        <ManageAccountsOutlined
+          sx={{
+            "&:hover": {
+              cursor: "pointer",
+            },
+          }}
+          onClick={() => navigate(`/profile/${userId}`)}
+        />
       </FlexBetween>
       <Divider />
       {/* second row */}
